@@ -2362,20 +2362,20 @@ globalFeatures.Preset_Chat = menu.add_feature("预设垃圾邮件", "parent", gl
 globalFeatures.Preset_RUS = menu.add_feature("俄罗斯 垃圾邮件", "parent", globalFeatures.Moist_Spam).id
 globalFeatures.Spam_Options = menu.add_feature("聊天和短信设置", "parent", globalFeatures.Moist_Spam).id
 globalFeatures.Script_loader = menu.add_feature("脚本(自动)加载", "parent", globalFeatures.parent).id
-globalFeatures.moist_test = menu.add_feature("Experimental Test Features", "parent", globalFeatures.parent)
+globalFeatures.moist_test = menu.add_feature("实验功能", "parent", globalFeatures.parent)
 globalFeatures.moist_test.hidden = false
 --options
-globalFeatures.moistopt = menu.add_feature("MoistScript Options", "parent", globalFeatures.parent, function(feat)
+globalFeatures.moistopt = menu.add_feature("潮湿的脚本设置", "parent", globalFeatures.parent, function(feat)
 
 OSD_Debug2.on = false
 end).id
 --TODO: save settings
-menu.add_feature("Save Current Settings", "action", globalFeatures.moistopt, function(feat)
+menu.add_feature("保存现在的设置", "action", globalFeatures.moistopt, function(feat)
 SaveSettings()
-moist_notify("Current Settings Saved!", "MoistScript Settings")
+moist_notify("现在的设置已经成功保存了!", "潮湿的脚本设置")
 end)
 
-globalFeatures.moist_hotkeys = menu.add_feature("Hotkeys", "parent", globalFeatures.moistopt).id
+globalFeatures.moist_hotkeys = menu.add_feature("快捷键(热键)", "parent", globalFeatures.moistopt).id
 --TODO: Save Settings Hotkey
 SaveOptions_Hotkey = menu.add_feature("Options Save HotKey", "toggle", globalFeatures.moist_hotkeys, function(feat)
 if not feat.on then
@@ -2387,7 +2387,7 @@ key:push_str("LSHIFT")
 key:push_str("s")
 if key:is_down() then
 	SaveSettings()
-	moist_notify("Current Settings Saved!", "MoistScript Settings")
+	moist_notify("现在的设置已经成功保存了!", "潮湿的脚本设置")
 	system.wait(1200)
 end
 system.yield(10)
@@ -2395,9 +2395,9 @@ return HANDLER_CONTINUE
 end)
 SaveOptions_Hotkey.on = true
 
-globalFeatures.moist_perf = menu.add_feature("Performance Options","parent",globalFeatures.moistopt).id
+globalFeatures.moist_perf = menu.add_feature("性能选项","parent",globalFeatures.moistopt).id
 
-playerlistloop = menu.add_feature("Player List Loop Delay ms:", "autoaction_value_i", globalFeatures.moist_perf, function(feat)
+playerlistloop = menu.add_feature("玩家列表循环延迟(毫秒) :", "autoaction_value_i", globalFeatures.moist_perf, function(feat)
 Settings["playerlist_loop"] = feat.value
 print(feat.value)
 end)
@@ -2406,7 +2406,7 @@ playerlistloop.min = 0
 playerlistloop.mod = 1
 playerlistloop.value = Settings["playerlist_loop"]
 
-loopfeatdelay = menu.add_feature("Other FeatureLoops Delay ms:", "autoaction_value_i", globalFeatures.moist_perf, function(feat)
+loopfeatdelay = menu.add_feature("其他功能循环延迟(毫秒) :", "autoaction_value_i", globalFeatures.moist_perf, function(feat)
 Settings["loop_feat_delay"] = feat.value
 end)
 loopfeatdelay.max = 100
@@ -2414,7 +2414,7 @@ loopfeatdelay.min = 0
 loopfeatdelay.mod = 1
 loopfeatdelay.value = Settings["loop_feat_delay"]
 
-ScriptEvent_delay = menu.add_feature("Scriptevent Delay ms:", "autoaction_value_i", globalFeatures.moist_perf, function(feat)
+ScriptEvent_delay = menu.add_feature("脚本时间延迟(毫秒) :", "autoaction_value_i", globalFeatures.moist_perf, function(feat)
 Settings["ScriptEvent_delay"] = feat.value
 end)
 ScriptEvent_delay.max = 100
@@ -2422,9 +2422,9 @@ ScriptEvent_delay.min = 0
 ScriptEvent_delay.mod = 1
 ScriptEvent_delay.value = Settings["ScriptEvent_delay"]
 
-globalFeatures.notifyParent = menu.add_feature("Notify Customisation", "parent", globalFeatures.moistopt, function(feat)
+globalFeatures.notifyParent = menu.add_feature("通知定制", "parent", globalFeatures.moistopt, function(feat)
 OSD_Debug2.on = true
-update_osd_text2("~h~~b~ 1: ~h~~w~Disables Almost all Notifys\n", "\n~h~~b~ 2: ~w~Also use new Notify System\n", "\nPress+Hold: LCTRL + LSHIFT\nPress: S To save When Done")
+update_osd_text2("~h~~b~ 1: ~h~~w~禁用几乎所有的通知\n", "\n~h~~b~ 2: ~w~也使用新的通知系统\n", "\n按住 : 左CTRL + 左SHIFT\n按 : S 来完成保存")
 
 end).id
 
