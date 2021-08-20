@@ -77,7 +77,7 @@ file:close()
 end
 function LoadSettings()
 if not utils.file_exists(Paths.Settings) then
-	print("No saved settings")
+	print("暂无已保存的设置")
 	return
 end
 for line in io.lines(Paths.Settings) do
@@ -448,11 +448,11 @@ function veh_check(pid)
 pped = player.get_player_ped(pid)
 if player.is_player_in_any_vehicle(pid) or ped.is_ped_in_any_vehicle(pped) then
 	local plyveh, pedveh = player.is_player_in_any_vehicle(pid),  ped.is_ped_in_any_vehicle(pped)
-	moist_notify("Player in Veh Check: " .. tostring(plyveh) .."\nPlayer Ped in Veh Check: " ..  tostring(pedveh), "Player Vehicle Check")
+	moist_notify("玩家在载具中检测 : " .. tostring(plyveh) .."\n玩家在载具中检测 : " ..  tostring(pedveh), "Player Vehicle Check")
 	local vehchk1 = ped.get_vehicle_ped_is_using(pped)
 	local vehchk2 = player.get_player_vehicle(pid)
 	
-	moist_notify("Player Vehicle ID: " .. vehchk2 .."\nPlayers Ped Vehicle ID: " .. vehchk1, "Player Vehicle Check")
+	moist_notify("玩家载具 ID: " .. vehchk2 .."\n玩家载具 Ped ID: " .. vehchk1, "Player Vehicle Check")
 end
 end
 
@@ -471,13 +471,13 @@ maxhp = player.get_player_max_health(pid)
 armo = player.get_player_armour(pid)
 local dist = Get_Distance3D(pid)
 if  dist > 900 or player.is_player_in_any_vehicle(pid) or attached then
-	return("~h~~r~H.~o~P~w~ | ~y~A:~r~\t\t " .. health .. "~w~ / ~o~" .. maxhp .. "~h~~w~ | ~y~" .. armo .. "\nWeapon:"),  ("\n\t\t~h~~w~Player is in a Vehicle " .. "~p~No Check Done" .. "\n~b~Team~w~ | ~y~Group:~b~ \t " .. plyteam  .."~w~ |~y~ " .. plygrp), ("~w~\nNetHash:\t\t " .. playern)
+	return("~h~~r~H.~o~P~w~ | ~y~A:~r~\t\t " .. health .. "~w~ / ~o~" .. maxhp .. "~h~~w~ | ~y~" .. armo .. "\n武器:"),  ("\n\t\t~h~~w~玩家在载具当中 " .. "~p~没有检测完成" .. "\n~b~团队：~w~ | ~y~群组：:~b~ \t " .. plyteam  .."~w~ |~y~ " .. plygrp), ("~w~\n网络Hash:\t\t " .. playern)
 	else
 	heldwep = ped.get_current_ped_weapon(pped) or "none"
 	curweap = weapon.get_weapon_name(heldwep) or "none"
 	heldammotype = weapon.get_ped_ammo_type_from_weapon(pped, heldwep)
 	expsnipe = Get_AmmoType(heldammotype) or "Normal"
-	return ("~h~~r~H.~o~P~w~ | ~y~A:~r~\t\t " .. health .. "~w~ / ~o~" .. maxhp .. "~h~~w~ | ~y~" .. armo .. "\n~b~Weapon: ~w~"), ("\n\t\t" .. curweap .. "\n~p~Ammo: ~w~~h~" .. expsnipe .. "\n~b~Team~w~ | ~y~Group:~b~ \t " .. plyteam  .."~w~ |~y~ " .. plygrp), ("~w~\n\nNetHash:\t\t " .. playern)
+	return ("~h~~r~H.~o~P~w~ | ~y~A:~r~\t\t " .. health .. "~w~ / ~o~" .. maxhp .. "~h~~w~ | ~y~" .. armo .. "\n~b~武器: ~w~"), ("\n\t\t" .. curweap .. "\n~p~弹药: ~w~~h~" .. expsnipe .. "\n~b~团队~w~ | ~y~群组：:~b~ \t " .. plyteam  .."~w~ |~y~ " .. plygrp), ("~w~\n\n网络Hash:\t\t " .. playern)
 end
 end
 local ammois = "Normal"
@@ -2287,33 +2287,33 @@ playerFeat3 = {}
 playerFeat4 = {}
 Active_menu = nil
 --local Menu Features
-globalFeatures.parent = menu.add_feature("Moists Script 2.0.4.9", "parent", 0).id
-globalFeatures.Online_Session = menu.add_feature("Online Features", "parent", globalFeatures.parent).id
+globalFeatures.parent = menu.add_feature("Moists Script 2.0.4.9 中文版", "parent", 0).id
+globalFeatures.Online_Session = menu.add_feature("在线功能", "parent", globalFeatures.parent).id
 --TODO: Online Feature Parents
-playersFeature = menu.add_feature("Online Players", "parent", globalFeatures.Online_Session, function(feat)
+playersFeature = menu.add_feature("在线玩家", "parent", globalFeatures.Online_Session, function(feat)
 Active_menu = nil
 OSD_Debug2.on = false
 end).id
-Recent = menu.add_feature("Recent Players", "parent", globalFeatures.Online_Session).id
+Recent = menu.add_feature("最近的玩家", "parent", globalFeatures.Online_Session).id
 God_Threads_Created = menu.add_feature("PlayerCheck threads", "parent", globalFeatures.Online_Session)
 God_Threads_Created.hidden = true
 --session
-globalFeatures.lobby = menu.add_feature("Online Session", "parent", globalFeatures.Online_Session).id
-globalFeatures.troll = menu.add_feature("Troll Features", "parent", globalFeatures.lobby).id
-SoundAnnoyances = menu.add_feature("Sound Annoyances", "parent", globalFeatures.troll).id
+globalFeatures.lobby = menu.add_feature("在线战局", "parent", globalFeatures.Online_Session).id
+globalFeatures.troll = menu.add_feature("食人魔功能", "parent", globalFeatures.lobby).id
+SoundAnnoyances = menu.add_feature("垃圾声音", "parent", globalFeatures.troll).id
 --Protection stuff
-globalFeatures.protex = menu.add_feature("Online Protection", "parent", globalFeatures.Online_Session).id
-globalFeatures.parentID = menu.add_feature("Blacklist", "parent", globalFeatures.protex).id
-globalFeatures.orbital = menu.add_feature("Orbital Room Block", "parent", globalFeatures.protex).id
-globalFeatures.glitch = menu.add_feature("Block Glitch Spots", "parent", globalFeatures.protex).id
-globalFeatures.kick = menu.add_feature("Session Kicks", "parent", globalFeatures.Online_Session).id
+globalFeatures.protex = menu.add_feature("在线保护", "parent", globalFeatures.Online_Session).id
+globalFeatures.parentID = menu.add_feature("黑名单", "parent", globalFeatures.protex).id
+globalFeatures.orbital = menu.add_feature("轨道房保护", "parent", globalFeatures.protex).id
+globalFeatures.glitch = menu.add_feature("阻止故障点", "parent", globalFeatures.protex).id
+globalFeatures.kick = menu.add_feature("踢出", "parent", globalFeatures.Online_Session).id
 --Local Player Features (Ped/Vehicle)
-globalFeatures.self = menu.add_feature("Player Features", "parent", globalFeatures.parent).id
-globalFeatures.self_ped = menu.add_feature("Ped Features", "parent", globalFeatures.self).id
-globalFeatures.self_veh = menu.add_feature("Vehicle Features", "parent", globalFeatures.self).id
-globalFeatures.self_quickstat = menu.add_feature("Player Stats", "parent", globalFeatures.self).id
-globalFeatures.self_statcheck = menu.add_feature("Player Stat Checks", "parent", globalFeatures.self_quickstat).id
-globalFeatures.self_statsetup = menu.add_feature("Player Stat Setup", "parent", globalFeatures.self_quickstat, function()
+globalFeatures.self = menu.add_feature("玩家功能", "parent", globalFeatures.parent).id
+globalFeatures.self_ped = menu.add_feature("Ped 功能", "parent", globalFeatures.self).id
+globalFeatures.self_veh = menu.add_feature("载具功能", "parent", globalFeatures.self).id
+globalFeatures.self_quickstat = menu.add_feature("玩家统计", "parent", globalFeatures.self).id
+globalFeatures.self_statcheck = menu.add_feature("玩家数据检查", "parent", globalFeatures.self_quickstat).id
+globalFeatures.self_statsetup = menu.add_feature("玩家数据安装", "parent", globalFeatures.self_quickstat, function()
 local stat_hash, curval, valu, value_set, stat
 stat = Get_Last_MP("PLAYER_MENTAL_STATE")
 stat_hash = gameplay.get_hash_key(stat)
@@ -2322,27 +2322,27 @@ valu = math.ceil(curval)
 value_set = tonumber(valu)
 mental_statset.value = value_set
 end)
-globalFeatures.quick_stats = menu.add_feature("Quick Stat Setups", "parent", globalFeatures.self_quickstat, function(feat)
-moist_notify("ensure to pay for heist setup first", "Casino Heist Quick Stat Setup")
-moist_notify("cooldown can be removed running the setup first\nEnsure to reapply after paying for it", "Casino Heist Quick Stat Setup")
+globalFeatures.quick_stats = menu.add_feature("快速统计设置", "parent", globalFeatures.self_quickstat, function(feat)
+moist_notify("请确保您已经支付了抢劫设置费用", "佩里克岛抢劫前置快速跳过")
+moist_notify("首先运行此选项可以取消冷却\n请确保您已经支付了抢劫设置费用", "佩里克岛抢劫前置快速跳过")
 end).id
-globalFeatures.self_options = menu.add_feature("Player Options", "parent", globalFeatures.self).id
-globalFeatures.self_wep = menu.add_feature("Player Weapons", "parent", globalFeatures.self_ped).id
-globalFeatures.self_ped_combat = menu.add_feature("Combat Features", "parent", globalFeatures.parent).id
+globalFeatures.self_options = menu.add_feature("玩家设置", "parent", globalFeatures.self).id
+globalFeatures.self_wep = menu.add_feature("玩家武器", "parent", globalFeatures.self_ped).id
+globalFeatures.self_ped_combat = menu.add_feature("战斗功能", "parent", globalFeatures.parent).id
 --stats
 --world
-globalFeatures.cleanup = menu.add_feature("Clean Shit Up!", "parent",  globalFeatures.Online_Session).id
-globalFeatures.entity_removal = menu.add_feature("World Clean-up", "parent", globalFeatures.cleanup).id
-globalFeatures.World = menu.add_feature("World Options", "parent", globalFeatures.Online_Session).id
-globalFeatures.Weather = menu.add_feature("Weather Overide", "parent", globalFeatures.World).id
-menu.add_feature("Reset Override Weather", "action", globalFeatures.Weather, function(feat)
+globalFeatures.cleanup = menu.add_feature("清理垃圾！", "parent",  globalFeatures.Online_Session).id
+globalFeatures.entity_removal = menu.add_feature("世界清理", "parent", globalFeatures.cleanup).id
+globalFeatures.World = menu.add_feature("世界设置", "parent", globalFeatures.Online_Session).id
+globalFeatures.Weather = menu.add_feature("水覆盖", "parent", globalFeatures.World).id
+menu.add_feature("重置已覆盖的天气", "action", globalFeatures.Weather, function(feat)
 gameplay.clear_cloud_hat()
 gameplay.clear_override_weather()
 end)
-menu.add_feature("Clear Cloud Hat", "action", globalFeatures.Weather, function(feat)
+menu.add_feature("清理云", "action", globalFeatures.Weather, function(feat)
 gameplay.clear_cloud_hat()
 end)
-weather = {"FUCK","Extra Sunny","Clear","Clouds","Smog","Fog","Clouds","Rain","Thunder","Clearing","Neutral","Snow","Blizzard","Snow Light","Xmas","Halloween","Psychedelic Screen Fuck"}
+weather = {"艹","大晴天","清空","Clouds","Smog","Fog","Clouds","Rain","Thunder","Clearing","Neutral","Snow","Blizzard","Snow Light","Xmas","Halloween","Psychedelic Screen Fuck"}
 for i = 1, #weather do
 menu.add_feature(weather[i], "action", globalFeatures.Weather, function(feat)
 	local i = i - 2
