@@ -2349,19 +2349,19 @@ menu.add_feature(weather[i], "action", globalFeatures.Weather, function(feat)
 	gameplay.set_override_weather(i)
 end)
 end
-globalFeatures.Wave = menu.add_feature("World Wave Modifiers", "parent", globalFeatures.World, function(feat)
+globalFeatures.Wave = menu.add_feature("世界海浪修改器", "parent", globalFeatures.World, function(feat)
 wave_int_cur = tostring("~q~~h~"..water.get_waves_intensity())
 wave_int_osd.on = true
 system.yield(1000)
 wave_int_osd.on = false
 end).id
 --spam
-globalFeatures.Moist_Spam = menu.add_feature("Chat & SMS Features", "parent", globalFeatures.Online_Session).id
-globalFeatures.custom_Chat = menu.add_feature("Custom Presets", "parent", globalFeatures.Moist_Spam).id
-globalFeatures.Preset_Chat = menu.add_feature("Preset Spam", "parent", globalFeatures.Moist_Spam).id
-globalFeatures.Preset_RUS = menu.add_feature("Russian Spam", "parent", globalFeatures.Moist_Spam).id
-globalFeatures.Spam_Options = menu.add_feature("Chat & SMS Options", "parent", globalFeatures.Moist_Spam).id
-globalFeatures.Script_loader = menu.add_feature("Script (Auto)Loader", "parent", globalFeatures.parent).id
+globalFeatures.Moist_Spam = menu.add_feature("聊天和短信功能", "parent", globalFeatures.Online_Session).id
+globalFeatures.custom_Chat = menu.add_feature("自定义预设", "parent", globalFeatures.Moist_Spam).id
+globalFeatures.Preset_Chat = menu.add_feature("预设垃圾邮件", "parent", globalFeatures.Moist_Spam).id
+globalFeatures.Preset_RUS = menu.add_feature("俄罗斯 垃圾邮件", "parent", globalFeatures.Moist_Spam).id
+globalFeatures.Spam_Options = menu.add_feature("聊天和短信设置", "parent", globalFeatures.Moist_Spam).id
+globalFeatures.Script_loader = menu.add_feature("脚本(自动)加载", "parent", globalFeatures.parent).id
 globalFeatures.moist_test = menu.add_feature("Experimental Test Features", "parent", globalFeatures.parent)
 globalFeatures.moist_test.hidden = false
 --options
