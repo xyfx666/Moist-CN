@@ -1,2 +1,2 @@
 # Moist-CN
-这是一个Moish翻译项目
+这是一个Moist翻译项目
