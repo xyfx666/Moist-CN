@@ -2342,7 +2342,7 @@ end)
 menu.add_feature("清理云", "action", globalFeatures.Weather, function(feat)
 gameplay.clear_cloud_hat()
 end)
-weather = {"艹","大晴天","清空","Clouds","Smog","Fog","Clouds","Rain","Thunder","Clearing","Neutral","Snow","Blizzard","Snow Light","Xmas","Halloween","Psychedelic Screen Fuck"}
+weather = {"艹","大晴天","晴空","多云1","烟雾","雾","多云2","雨","雷","清洁","中性","雪","暴雪","雪光","圣诞节","万圣节","迷幻屏幕 艹"}
 for i = 1, #weather do
 menu.add_feature(weather[i], "action", globalFeatures.Weather, function(feat)
 	local i = i - 2
